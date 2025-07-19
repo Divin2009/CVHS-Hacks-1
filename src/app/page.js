@@ -1,103 +1,180 @@
-import Image from "next/image";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { Users, BookOpen, DollarSign, Briefcase, MapPin, Bell } from 'lucide-react';
 
-export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+export default function HomePage() {
+  const [location, setLocation] = useState(null);
+  const [showLocationPrompt, setShowLocationPrompt] = useState(true);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    // Check if location is already stored
+    const savedLocation = localStorage.getItem('userLocation');
+    if (savedLocation) {
+      setLocation(JSON.parse(savedLocation));
+      setShowLocationPrompt(false);
+    }
+  }, []);
+
+  const requestLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            timestamp: Date.now()
+          };
+          localStorage.setItem('userLocation', JSON.stringify(userLocation));
+          setLocation(userLocation);
+          setShowLocationPrompt(false);
+        },
+        (error) => {
+          console.log('Location access denied');
+          setShowLocationPrompt(false);
+        }
+      );
+    }
+  };
+
+  const dismissLocationPrompt = () => {
+    setShowLocationPrompt(false);
+  };
+
+  const HeroSection = () => (
+    <div className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-pink-800 overflow-hidden">
+      <div className="absolute inset-0 bg-black opacity-20"></div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
+            Empowering Women in the
+            <span className="block bg-gradient-to-r from-yellow-400 to-pink-400 bg-clip-text text-transparent">
+              Digital Future
+            </span>
+          </h1>
+          <p className="text-xl text-purple-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Breaking barriers, creating opportunities, and building a more inclusive workforce. 
+            Discover jobs, resources, and funding opportunities designed for underrepresented women.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/jobs"
+              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
+            >
+              Explore Opportunities
+            </a>
+            <a 
+              href="/resources"
+              className="bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 border border-white border-opacity-30 text-center"
+            >
+              Free Resources
+            </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
     </div>
+  );
+
+  const LocationPrompt = () => {
+    if (!showLocationPrompt) return null;
+
+    return (
+      <div className="fixed bottom-4 right-4 bg-white rounded-lg shadow-lg p-4 max-w-sm border border-gray-200 z-50">
+        <div className="flex items-start space-x-3">
+          <MapPin className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
+          <div className="flex-1">
+            <h4 className="font-semibold text-gray-900 mb-1">Enable Location</h4>
+            <p className="text-sm text-gray-600 mb-3">
+              Share your location to see jobs near you and get better recommendations.
+            </p>
+            <div className="flex space-x-2">
+              <button
+                onClick={requestLocation}
+                className="bg-purple-600 text-white px-3 py-1 rounded text-sm hover:bg-purple-700 transition-colors"
+              >
+                Allow
+              </button>
+              <button
+                onClick={dismissLocationPrompt}
+                className="text-gray-500 px-3 py-1 rounded text-sm hover:text-gray-700"
+              >
+                Later
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const StatsSection = () => (
+    <div className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="text-center">
+            <div className="text-4xl font-bold text-purple-600 mb-2">10k+</div>
+            <div className="text-gray-600">Job Opportunities</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-pink-600 mb-2">500+</div>
+            <div className="text-gray-600">Learning Resources</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-purple-600 mb-2">$2M+</div>
+            <div className="text-gray-600">Funding Available</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-pink-600 mb-2">95%</div>
+            <div className="text-gray-600">Success Rate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      <HeroSection />
+      <StatsSection />
+      <div className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Breaking Barriers Together</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              Our platform connects underrepresented women with opportunities, resources, and support 
+              to build successful careers in today's digital economy.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6 bg-purple-50 rounded-lg hover:shadow-lg transition-shadow">
+              <Briefcase className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Job Opportunities</h3>
+              <p className="text-gray-600 mb-4">Discover inclusive workplaces committed to gender equality</p>
+              <a href="/jobs" className="text-purple-600 hover:text-purple-700 font-medium">
+                Browse Jobs →
+              </a>
+            </div>
+            <div className="text-center p-6 bg-pink-50 rounded-lg hover:shadow-lg transition-shadow">
+              <BookOpen className="w-12 h-12 text-pink-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Skill Development</h3>
+              <p className="text-gray-600 mb-4">Access free and paid resources to build digital skills</p>
+              <a href="/resources" className="text-pink-600 hover:text-pink-700 font-medium">
+                View Resources →
+              </a>
+            </div>
+            <div className="text-center p-6 bg-purple-50 rounded-lg hover:shadow-lg transition-shadow">
+              <DollarSign className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Funding Support</h3>
+              <p className="text-gray-600 mb-4">Find grants and loans to support your career journey</p>
+              <a href="/funding" className="text-purple-600 hover:text-purple-700 font-medium">
+                Explore Funding →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <LocationPrompt />
+    </>
   );
 }
