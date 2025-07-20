@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { Menu, X, Users, BookOpen, DollarSign, Briefcase, Heart, Award, TrendingUp } from 'lucide-react'
+import { Menu, X, Users, BookOpen, DollarSign, Briefcase, Heart, Award, TrendingUp, Goal } from 'lucide-react'
 
 const Navbar2 = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -37,6 +37,7 @@ const Navbar2 = () => {
       items: [
         { name: 'Funding', href: '/funding', icon: DollarSign, description: 'Grants and financial support' },
         { name: 'Team', href: '/team', icon: Heart, description: 'Learn about our team' },
+        { name: 'Our Mission', href: '/mission', icon: Goal, description: 'Learn about our mission' }
       ]
     }
   ]
