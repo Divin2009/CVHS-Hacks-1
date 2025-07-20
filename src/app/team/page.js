@@ -192,7 +192,7 @@ export default function TeamPage() {
           </div>
           <div className="mt-6 text-center">
             <a
-              href="mailto:hello@example.com"
+              href="mailto:divin.giddaluru@gmail.com"
               className="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors"
             >
               <Mail className="w-5 h-5 mr-2" />
