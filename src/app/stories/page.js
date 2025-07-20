@@ -160,7 +160,7 @@ export default function StoriesPage() {
             <p className="text-purple-800 text-sm max-w-3xl mx-auto">
               Behind every statistic is a woman who refused to give up, who found the courage to ask for help, 
               and who used available resources as stepping stones to build something extraordinary. These stories 
-              prove that with the right support, any woman can change her life's trajectory.
+              prove that with the right support, any woman can change her life&apos;s trajectory.
             </p>
           </div>
         </div>
@@ -258,7 +258,7 @@ export default function StoriesPage() {
                   </div>
                 </div>
                 <div className="border-l-4 border-purple-500 pl-4 bg-purple-50 p-3 rounded-r-lg">
-                  <p className="text-sm text-gray-700 italic">"{story.quote}"</p>
+                  <p className="text-sm text-gray-700 italic">&quot;{story.quote}&quot;</p>
                   <p className="text-xs text-gray-500 mt-1">— {story.name}</p>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export default function StoriesPage() {
               <h3 className="font-semibold text-gray-900 mb-2">Timing Matters</h3>
               <p className="text-sm text-gray-600">
                 These women accessed help at crucial moments—during pregnancy, after job loss, when leaving abuse, 
-                or while pursuing education. Don't wait for the "perfect" time to seek support.
+                or while pursuing education. Don&apos;t wait for the &quot;perfect&quot; time to seek support.
               </p>
             </div>
             <div className="border-l-4 border-purple-500 pl-4">
