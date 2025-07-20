@@ -18,7 +18,7 @@ export default function TeamPage() {
       "Computer Vision",
       "Digital Learning Tools",
       "Cloud Integration",
-      "Real-Time AI Applications"
+      "Real-Time AI Applications",
       ],      
       achievements: [
         "PCAP™ Certified Associate in Python Programming",
@@ -38,14 +38,25 @@ export default function TeamPage() {
       name: "Arpan Datta",
       role: "Co-Founder & Research Lead",
       image: "",
-      bio: "",
-      expertise: [],
+      bio: "I&apos;m a developer and aspiring technologist focused on building inclusive, impact-driven tools. With a background in web development, AI integration, and educational outreach, I work on creating platforms that connect people to opportunity",
+      expertise: ["Artificial Intelligence",
+        "Large Language Models",
+        "Front-End Development",
+        "Digital Learning Tools",
+        "Digital Marketing",
+        "CAD",
+        "Political Science"],
       achievements: [
+       "Co-developed an AI-based social media platform",
+       "Marketed for BrightSTEM JA company through Wordpress",
+       "Deployed CNN-LSTM and CNNs for paleobiology research",
+       "CAD certified by OnShape",
+       "Intern at TurnUP for political science/activism"
       ],
       location: "Houston, TX",
       joinedYear: "2025",
-      email: "",
-      personalNote: ""
+      email: "arpan.dutta4192@gmail.com",
+      personalNote: "To me, technology isn&apos;t just about what it can do—it&apos;s about who it can reach. I&apos;m driven to design systems that make life simpler, fairer, and more accessible, especially for underrepresented communities."
     }
   ];
 
