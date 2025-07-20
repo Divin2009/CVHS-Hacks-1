@@ -38,7 +38,7 @@ export default function TeamPage() {
       name: "Arpan Datta",
       role: "Co-Founder & Research Lead",
       image: "",
-      bio: "I&apos;m a developer and aspiring technologist focused on building inclusive, impact-driven tools. With a background in web development, AI integration, and educational outreach, I work on creating platforms that connect people to opportunity",
+      bio: "I'm a developer and aspiring technologist focused on building inclusive, impact-driven tools. With a background in web development, AI integration, and educational outreach, I work on creating platforms that connect people to opportunity",
       expertise: ["Artificial Intelligence",
         "Large Language Models",
         "Front-End Development",
@@ -56,7 +56,7 @@ export default function TeamPage() {
       location: "Houston, TX",
       joinedYear: "2025",
       email: "arpan.dutta4192@gmail.com",
-      personalNote: "To me, technology isn&apos;t just about what it can do—it&apos;s about who it can reach. I&apos;m driven to design systems that make life simpler, fairer, and more accessible, especially for underrepresented communities."
+      personalNote: "To me, technology isn't just about what it can do—it's about who it can reach. I'm driven to design systems that make life simpler, fairer, and more accessible, especially for underrepresented communities."
     }
   ];
 
