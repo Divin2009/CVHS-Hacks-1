@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 const APP_ID = process.env.ADZUNA_APP_ID;
 const APP_KEY = process.env.ADZUNA_APP_KEY;
 
