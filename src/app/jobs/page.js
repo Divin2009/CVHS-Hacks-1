@@ -18,6 +18,7 @@ export default function JobsPage() {
     industry: '',
     experience: '',
     remote: false,
+    fullTime: false,
     salaryMin: ''
   });
 
@@ -34,11 +35,11 @@ export default function JobsPage() {
   useEffect(() => {
     applyFilters();
   }, [jobs, filters]);
-
+  
   const loadJobs = async () => {
     try {
       setLoading(true);
-      const what = "software engineer";
+      const what = filters.search.trim() || '';
       const city = filters.city.trim() || '';
       const country = filters.country.trim() || '';
       const query = new URLSearchParams({ what, city, country });
@@ -48,7 +49,6 @@ export default function JobsPage() {
         throw new Error('Failed to fetch jobs');
       }
       const data = await res.json();
-      console.log(data)
       setJobs(data);
     } catch (err) {
       setError('Failed to load jobs. Please try again later.');
@@ -76,16 +76,11 @@ export default function JobsPage() {
         job.location?.toLowerCase().includes(filters.city.toLowerCase())
       );
     }
-    if (filters.country) {
-      filtered = filtered.filter(job =>
-        job.location?.toLowerCase().includes(filters.country.toLowerCase())
-      );
-    }
 
     // Industry filter (you might need to add industry field to your API response)
     if (filters.industry) {
       filtered = filtered.filter(job => 
-        job.industry?.toLowerCase().includes(filters.industry.toLowerCase())
+        job.category?.toLowerCase().includes(filters.industry.toLowerCase())
       );
     }
 
@@ -94,6 +89,15 @@ export default function JobsPage() {
       const minSalary = parseInt(filters.salaryMin);
       filtered = filtered.filter(job => 
         job.salaryMin && job.salaryMin >= minSalary
+      );
+    }
+
+    // Experience filter
+    if (filters.experience) {
+      const level = filters.experience.toLowerCase();
+      filtered = filtered.filter(job =>
+        job.title?.toLowerCase().includes(level) ||
+        job.description?.toLowerCase().includes(level)
       );
     }
 
@@ -106,13 +110,29 @@ export default function JobsPage() {
       );
     }
 
+    // Full-time filter
+    if (filters.fullTime) {
+      filtered = filtered.filter(job =>
+        job.contract_time === 'full_time'
+      )
+    }
+
+
     setFilteredJobs(filtered);
-    setCurrentPage(1); // Reset to first page when filters change
+    setCurrentPage(1);
   };
 
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({ ...prev, [key]: value }));
   };
+  
+
+  useEffect(() => {
+    if (filters.country) {
+      loadJobs();
+    }
+  }, [filters.country]);
+
 
   // Pagination logic
   const indexOfLastJob = currentPage * jobsPerPage;
@@ -142,9 +162,9 @@ export default function JobsPage() {
 
   const useMyLocation = async () => {
     if (userLocation) {
-      console.log(await getCityCountry(userLocation.lat, userLocation.lng))
-      handleFilterChange('city', 'San Francisco');
-      handleFilterChange('country', 'us');
+      let location = await getCityCountry(userLocation.lat, userLocation.lng)
+      handleFilterChange('city', location['city']);
+      handleFilterChange('country', location['country']);
     } else {
       alert('Location not available. Please enable location services.');
     }
@@ -195,7 +215,7 @@ export default function JobsPage() {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-4">
             {/* City Input */}
             <div className="relative">
               <input
@@ -223,10 +243,25 @@ export default function JobsPage() {
               onChange={(e) => handleFilterChange('country', e.target.value)}
             >
               <option value="">Select Country</option>
-              <option value="us">United States</option>
+              <option value="au">Australia</option>
+              <option value="at">Austria</option>
+              <option value="be">Belgium</option>
+              <option value="br">Brazil</option>
               <option value="ca">Canada</option>
-              <option value="uk">United Kingdom</option>
-              {/* Add more countries as needed */}
+              <option value="ch">Switzerland</option>
+              <option value="fr">France</option>
+              <option value="de">Germany</option>
+              <option value="es">Spain</option>
+              <option value="in">India</option>
+              <option value="it">Italy</option>
+              <option value="mx">Mexico</option>
+              <option value="nl">Netherlands</option>
+              <option value="nz">New Zealand</option>
+              <option value="pl">Poland</option>
+              <option value="sg">Singapore</option>
+              <option value="za">South Africa</option>
+              <option value="gb">United Kingdom</option>
+              <option value="us">United States</option>
             </select>
 
             <select
@@ -235,7 +270,7 @@ export default function JobsPage() {
               onChange={(e) => handleFilterChange('industry', e.target.value)}
             >
               <option value="">All Industries</option>
-              <option value="technology">Technology</option>
+              <option value="IT Jobs">IT Jobs</option>
               <option value="healthcare">Healthcare</option>
               <option value="education">Education</option>
               <option value="finance">Finance</option>
@@ -261,26 +296,40 @@ export default function JobsPage() {
               value={filters.salaryMin}
               onChange={(e) => handleFilterChange('salaryMin', e.target.value)}
             />
+          </div>
 
+          {/* Employment Type Checkboxes */}
+          <div className="flex flex-wrap items-center gap-6 mb-4">
             <div className="flex items-center">
               <input
                 type="checkbox"
                 id="remote"
-                className="mr-2 text-purple-600 focus:ring-purple-500"
+                className="mr-2 text-purple-600 focus:ring-purple-500 rounded"
                 checked={filters.remote}
                 onChange={(e) => handleFilterChange('remote', e.target.checked)}
               />
-              <label htmlFor="remote" className="text-sm font-medium">Remote Only</label>
+              <label htmlFor="remote" className="text-sm font-medium text-gray-700">Remote</label>
+            </div>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="fullTime"
+                className="mr-2 text-purple-600 focus:ring-purple-500 rounded"
+                checked={filters.fullTime}
+                onChange={(e) => handleFilterChange('fullTime', e.target.checked)}
+              />
+              <label htmlFor="fullTime" className="text-sm font-medium text-gray-700">Full-Time</label>
             </div>
           </div>
 
-          <div className="mt-4 flex justify-between items-center">
+          <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">
               Showing {indexOfFirstJob + 1}-{Math.min(indexOfLastJob, filteredJobs.length)} of {filteredJobs.length} jobs
             </span>
             <button
               onClick={() => setFilters({
-                search: '', city: '', country: '', industry: '', experience: '', remote: false, salaryMin: ''
+                search: '', city: '', country: '', industry: '', experience: '', 
+                remote: false, fullTime: false, contractType: '', salaryMin: ''
               })}
               className="text-sm text-purple-600 hover:text-purple-700 font-medium"
             >
@@ -334,13 +383,20 @@ export default function JobsPage() {
                     )}
                   </div>
                   <div className="flex flex-col items-end space-y-2">
-                    {job.location?.toLowerCase().includes('remote') && (
-                      <span className="text-sm px-2 py-1 bg-purple-100 text-purple-800 rounded-full font-semibold">
-                        Remote
-                      </span>
-                    )}
+                    <div className="flex flex-wrap gap-1 justify-end">
+                      {job.location?.toLowerCase().includes('remote') && (
+                        <span className="text-xs px-2 py-1 bg-purple-100 text-purple-800 rounded-full font-semibold">
+                          Remote
+                        </span>
+                      )}
+                      {job.contract_type && (
+                        <span className="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full font-semibold">
+                          {job.contract_type}
+                        </span>
+                      )}
+                    </div>
                     <a
-                      href={job.redirect_url}
+                      href={job.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-purple-600 hover:text-purple-700 flex items-center text-sm font-semibold"

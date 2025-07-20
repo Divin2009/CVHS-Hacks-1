@@ -42,7 +42,9 @@ export async function GET(request) {
           description: job.description.substring(0, 100),
           url: job.redirect_url,
           salaryMin: job.salary_min,
-          salaryMax: job.salary_max
+          salaryMax: job.salary_max,
+          category: job.category.label,
+          contract_time: job.contract_time || '',
         });
       }
     }

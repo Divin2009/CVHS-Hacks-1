@@ -19,7 +19,6 @@ const Navbar2 = () => {
       position: 'left',
       items: [
         { name: 'Browse Jobs', href: '/jobs', icon: Briefcase, description: 'Find inclusive job opportunities' },
-        { name: 'Remote Work', href: '/remote-jobs', icon: MapPin, description: 'Work from anywhere positions' },
         { name: 'Internships', href: '/internships', icon: TrendingUp, description: 'Entry-level opportunities' }
       ]
     },
@@ -37,8 +36,7 @@ const Navbar2 = () => {
       position: 'right',
       items: [
         { name: 'Funding', href: '/funding', icon: DollarSign, description: 'Grants and financial support' },
-        { name: 'Community', href: '/community', icon: Heart, description: 'Join our network' },
-        { name: 'Notifications', href: '/notifications', icon: Bell, description: 'Stay updated' }
+        { name: 'Team', href: '/team', icon: Heart, description: 'Learn about our team' },
       ]
     }
   ]
