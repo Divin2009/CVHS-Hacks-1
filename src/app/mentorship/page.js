@@ -192,7 +192,7 @@ export default function MentorshipPage() {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Mentorship Network</h1>
           <p className="text-lg text-gray-600 max-w-3xl">
             Connect with successful women who have navigated government programs and built thriving careers. 
-            Our mentors understand your journey because they've walked the same path. Get guidance, support, 
+            Our mentors understand your journey because they&apos;ve walked the same path. Get guidance, support, 
             and inspiration from those who want to see you succeed.
           </p>
         </div>
@@ -363,7 +363,7 @@ export default function MentorshipPage() {
                     <strong>Available:</strong> {mentor.availability} | <strong>Preferred:</strong> {mentor.preferredFormat}
                   </div>
                   <div className="border-l-4 border-purple-500 pl-3 bg-purple-50 p-2 rounded-r-lg mb-4">
-                    <p className="text-sm text-gray-700 italic">"{mentor.quote}"</p>
+                    <p className="text-sm text-gray-700 italic">&quot;{mentor.quote}&quot;</p>
                   </div>
                   <button className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium" onClick={() => toast.success(`Request sent to ${mentor.name}`)}>
                     Request Mentorship
@@ -427,7 +427,7 @@ export default function MentorshipPage() {
                     </div>
                   </div>
                   <div className="mb-4">
-                    <h4 className="font-medium text-gray-900 text-sm mb-2">What You'll Gain:</h4>
+                    <h4 className="font-medium text-gray-900 text-sm mb-2">What You&apos;ll Gain:</h4>
                     <ul className="space-y-1">
                       {program.benefits.map((benefit, index) => (
                         <li key={index} className="flex items-center">
@@ -452,7 +452,7 @@ export default function MentorshipPage() {
               <h2 className="text-2xl font-bold mb-4">Share Your Success, Transform Lives</h2>
               <p className="text-purple-100 mb-6 max-w-2xl mx-auto">
                 Your journey from struggle to success is exactly what another woman needs to hear. 
-                By becoming a mentor, you're not just sharing advice—you're providing hope, 
+                By becoming a mentor, you&apos;re not just sharing advice—you&apos;re providing hope, 
                 guidance, and proof that dreams are achievable.
               </p>
             </div>
