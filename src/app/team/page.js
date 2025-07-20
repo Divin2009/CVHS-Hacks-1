@@ -61,7 +61,7 @@ export default function TeamPage() {
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h1>
           <p className="text-lg text-gray-600 max-w-3xl">
-            We're two passionate advocates working to bridge the gap between women and the government resources 
+            We&apos;re two passionate advocates working to bridge the gap between women and the government resources 
             they deserve. Our combined expertise in policy, technology, and community outreach drives our mission 
             to make support accessible to all.
           </p>
@@ -72,7 +72,7 @@ export default function TeamPage() {
             <div>
               <h3 className="font-semibold text-purple-900 mb-2">Our Shared Mission</h3>
               <p className="text-purple-800 text-sm">
-                We believe that access to government resources shouldn't depend on who you know or how well you can 
+                We believe that access to government resources shouldn&apos;t depend on who you know or how well you can 
                 navigate bureaucracy. Every woman—regardless of background, education level, or circumstances—deserves 
                 clear, comprehensive information about the support available to her and her family.
               </p>
@@ -169,13 +169,13 @@ export default function TeamPage() {
             <div className="border-l-4 border-green-500 pl-4">
               <h3 className="font-semibold text-gray-900 mb-2">Media & Speaking</h3>
               <p className="text-sm text-gray-600">
-                Available for interviews, panel discussions, and speaking engagements about women's access to government resources.
+                Available for interviews, panel discussions, and speaking engagements about women&apos;s access to government resources.
               </p>
             </div>
             <div className="border-l-4 border-blue-500 pl-4">
               <h3 className="font-semibold text-gray-900 mb-2">Feedback</h3>
               <p className="text-sm text-gray-600">
-                Have suggestions for improving our platform? Know of programs we should include? We'd love to hear from you.
+                Have suggestions for improving our platform? Know of programs we should include? We&apos;d love to hear from you.
               </p>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default function TeamPage() {
             </div>
             <div>
               <h4 className="font-medium text-gray-800 mb-1">Community Centered</h4>
-              <p className="text-xs text-gray-600">Real women's experiences guide every decision we make</p>
+              <p className="text-xs text-gray-600">Real women&apos;s experiences guide every decision we make</p>
             </div>
           </div>
         </div>
