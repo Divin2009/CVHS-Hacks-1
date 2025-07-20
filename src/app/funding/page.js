@@ -162,7 +162,6 @@ export default function FundingPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Government Funding & Support Programs</h1>
           <p className="text-lg text-gray-600 max-w-3xl">
@@ -170,8 +169,6 @@ export default function FundingPage() {
             for underrepresented women and families. These programs offer assistance without requiring repayment.
           </p>
         </div>
-
-        {/* Important Legal Notice */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
           <div className="flex items-start">
             <Info className="w-6 h-6 text-blue-600 mt-1 mr-3 flex-shrink-0" />
@@ -189,8 +186,6 @@ export default function FundingPage() {
             </div>
           </div>
         </div>
-
-        {/* Search and Filter */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <div className="flex flex-col lg:flex-row gap-4 mb-6">
             <div className="flex-1">
@@ -206,7 +201,6 @@ export default function FundingPage() {
               </div>
             </div>
           </div>
-
           <div className="flex flex-wrap gap-2">
             {categories.map(category => {
               const Icon = category.icon;
@@ -227,8 +221,6 @@ export default function FundingPage() {
             })}
           </div>
         </div>
-
-        {/* Programs Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {filteredPrograms.map(program => {
             const Icon = program.icon;
@@ -288,11 +280,8 @@ export default function FundingPage() {
             );
           })}
         </div>
-
-        {/* Additional Resources */}
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Additional Resources & Tips</h2>
-          
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Additional Resources & Tips</h2> 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="border-l-4 border-purple-500 pl-4">
@@ -304,7 +293,6 @@ export default function FundingPage() {
                   <li>• Ask about emergency or expedited processing if needed</li>
                 </ul>
               </div>
-              
               <div className="border-l-4 border-green-500 pl-4">
                 <h3 className="font-semibold text-gray-900 mb-2">Required Documents</h3>
                 <ul className="text-sm text-gray-600 space-y-1">
@@ -315,7 +303,6 @@ export default function FundingPage() {
                 </ul>
               </div>
             </div>
-            
             <div className="space-y-4">
               <div className="border-l-4 border-blue-500 pl-4">
                 <h3 className="font-semibold text-gray-900 mb-2">Women-Specific Priorities</h3>
@@ -326,7 +313,6 @@ export default function FundingPage() {
                   <li>• Women veterans have additional program access</li>
                 </ul>
               </div>
-              
               <div className="border-l-4 border-red-500 pl-4">
                 <h3 className="font-semibold text-gray-900 mb-2">Get Help</h3>
                 <ul className="text-sm text-gray-600 space-y-1">
@@ -339,8 +325,6 @@ export default function FundingPage() {
             </div>
           </div>
         </div>
-
-        {/* Disclaimer */}
         <div className="mt-8 bg-gray-100 rounded-lg p-4">
           <p className="text-xs text-gray-600 text-center">
             <strong>Disclaimer:</strong> These rules are found in the US. Other countries may have different rules.

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, MapPin, Clock, Building, DollarSign, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { Search, MapPin, Building, DollarSign, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
 export default function JobsPage() {
   const [jobs, setJobs] = useState([]);
@@ -23,7 +23,6 @@ export default function JobsPage() {
   });
 
   useEffect(() => {
-    // Load user location from localStorage
     const savedLocation = localStorage.getItem('userLocation');
     if (savedLocation) {
       setUserLocation(JSON.parse(savedLocation));
@@ -60,8 +59,6 @@ export default function JobsPage() {
 
   const applyFilters = () => {
     let filtered = [...jobs];
-
-    // Search filter
     if (filters.search) {
       filtered = filtered.filter(job => 
         job.title?.toLowerCase().includes(filters.search.toLowerCase()) ||
@@ -69,30 +66,22 @@ export default function JobsPage() {
         job.description?.toLowerCase().includes(filters.search.toLowerCase())
       );
     }
-
-    // Location filter (checks city or country in job location string)
     if (filters.city) {
       filtered = filtered.filter(job => 
         job.location?.toLowerCase().includes(filters.city.toLowerCase())
       );
     }
-
-    // Industry filter (you might need to add industry field to your API response)
     if (filters.industry) {
       filtered = filtered.filter(job => 
         job.category?.toLowerCase().includes(filters.industry.toLowerCase())
       );
     }
-
-    // Salary filter
     if (filters.salaryMin) {
       const minSalary = parseInt(filters.salaryMin);
       filtered = filtered.filter(job => 
         job.salaryMin && job.salaryMin >= minSalary
       );
     }
-
-    // Experience filter
     if (filters.experience) {
       const level = filters.experience.toLowerCase();
       filtered = filtered.filter(job =>
@@ -100,8 +89,6 @@ export default function JobsPage() {
         job.description?.toLowerCase().includes(level)
       );
     }
-
-    // Remote filter
     if (filters.remote) {
       filtered = filtered.filter(job => 
         job.location?.toLowerCase().includes('remote') ||
@@ -109,8 +96,6 @@ export default function JobsPage() {
         job.description?.toLowerCase().includes('remote')
       );
     }
-
-    // Full-time filter
     if (filters.fullTime) {
       filtered = filtered.filter(job =>
         job.contract_time === 'full_time'
@@ -134,7 +119,6 @@ export default function JobsPage() {
   }, [filters.country]);
 
 
-  // Pagination logic
   const indexOfLastJob = currentPage * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
   const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
@@ -145,7 +129,7 @@ export default function JobsPage() {
   async function getCityCountry(lat, lon) {
     const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
 
-    const response = await fetch(url,)
+    const response = await fetch(url)
 
     if (!response.ok) {
       throw new Error('Failed to reverse geocode');
@@ -190,8 +174,6 @@ export default function JobsPage() {
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Job Opportunities</h1>
           <p className="text-gray-600">Discover inclusive workplaces committed to gender equality</p>
         </div>
-
-        {/* Legal Notice */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <h3 className="font-semibold text-blue-900 mb-2">Know Your Rights</h3>
           <p className="text-blue-800 text-sm">
@@ -199,8 +181,6 @@ export default function JobsPage() {
             Most job restrictions based on gender are illegal under Title VII of the Civil Rights Act.
           </p>
         </div>
-
-        {/* Search and Filters */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <div className="mb-4">
             <div className="relative">
@@ -216,7 +196,6 @@ export default function JobsPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-4">
-            {/* City Input */}
             <div className="relative">
               <input
                 type="text"
@@ -235,8 +214,6 @@ export default function JobsPage() {
                 </button>
               )}
             </div>
-
-            {/* Country Select */}
             <select
               className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500"
               value={filters.country}
@@ -263,7 +240,6 @@ export default function JobsPage() {
               <option value="gb">United Kingdom</option>
               <option value="us">United States</option>
             </select>
-
             <select
               className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500"
               value={filters.industry}
@@ -276,7 +252,6 @@ export default function JobsPage() {
               <option value="finance">Finance</option>
               <option value="marketing">Marketing</option>
             </select>
-
             <select
               className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500"
               value={filters.experience}
@@ -288,7 +263,6 @@ export default function JobsPage() {
               <option value="senior">Senior Level</option>
               <option value="executive">Executive</option>
             </select>
-
             <input
               type="number"
               placeholder="Min Salary"
@@ -297,8 +271,6 @@ export default function JobsPage() {
               onChange={(e) => handleFilterChange('salaryMin', e.target.value)}
             />
           </div>
-
-          {/* Employment Type Checkboxes */}
           <div className="flex flex-wrap items-center gap-6 mb-4">
             <div className="flex items-center">
               <input
@@ -321,7 +293,6 @@ export default function JobsPage() {
               <label htmlFor="fullTime" className="text-sm font-medium text-gray-700">Full-Time</label>
             </div>
           </div>
-
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">
               Showing {indexOfFirstJob + 1}-{Math.min(indexOfLastJob, filteredJobs.length)} of {filteredJobs.length} jobs
@@ -337,7 +308,6 @@ export default function JobsPage() {
             </button>
           </div>
         </div>
-
         {error && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
             <p className="text-red-800">{error}</p>
@@ -349,8 +319,6 @@ export default function JobsPage() {
             </button>
           </div>
         )}
-
-        {/* Job Listings */}
         {currentJobs.length === 0 ? (
           <div className="text-center py-12">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No jobs found</h3>
@@ -411,8 +379,6 @@ export default function JobsPage() {
             ))}
           </div>
         )}
-
-        {/* Pagination */}
         {filteredJobs.length > jobsPerPage && (
           <nav
             className="mt-8 flex justify-center items-center space-x-2"

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { Menu, X, Users, BookOpen, DollarSign, Briefcase, MapPin, Bell, Heart, Award, TrendingUp } from 'lucide-react'
+import { Menu, X, Users, BookOpen, DollarSign, Briefcase, Heart, Award, TrendingUp } from 'lucide-react'
 
 const Navbar2 = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -81,7 +81,6 @@ const Navbar2 = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -95,8 +94,6 @@ const Navbar2 = () => {
               </span>
             </Link>
           </motion.div>
-
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {menuItems.map((menu, index) => (
               <div key={index} className="relative group">
@@ -106,8 +103,6 @@ const Navbar2 = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-
-                {/* Dropdown Menu */}
                 <div
                   className={`absolute top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 ${
                     menu.position === 'right' ? 'right-0' : 'left-0'
@@ -139,7 +134,6 @@ const Navbar2 = () => {
                 </div>
               </div>
             ))}
-
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -152,8 +146,6 @@ const Navbar2 = () => {
               </a>
             </motion.div>
           </div>
-
-          {/* Mobile menu button */}
           <div className="md:hidden">
             <Button
               variant="ghost"
@@ -187,8 +179,6 @@ const Navbar2 = () => {
             </Button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div

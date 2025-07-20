@@ -1,13 +1,12 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Users, BookOpen, DollarSign, Briefcase, MapPin, Bell } from 'lucide-react';
+import { BookOpen, DollarSign, Briefcase, MapPin } from 'lucide-react';
 
 export default function HomePage() {
   const [location, setLocation] = useState(null);
   const [showLocationPrompt, setShowLocationPrompt] = useState(true);
 
   useEffect(() => {
-    // Check if location is already stored
     const savedLocation = localStorage.getItem('userLocation');
     if (savedLocation) {
       setLocation(JSON.parse(savedLocation));
@@ -45,7 +44,7 @@ export default function HomePage() {
       <div className="absolute inset-0 bg-black opacity-20"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
+          <h1 className="leading-tight text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
             Empowering Women in the
             <span className="block bg-gradient-to-r from-yellow-400 to-pink-400 bg-clip-text text-transparent">
               Digital Future
@@ -64,7 +63,7 @@ export default function HomePage() {
             </a>
             <a 
               href="/resources"
-              className="bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 border border-white border-opacity-30 text-center"
+              className="bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 text- px-8 py-4 rounded-lg font-semibold transition-all duration-300 border border-white border-opacity-30 text-center"
             >
               Free Resources
             </a>
