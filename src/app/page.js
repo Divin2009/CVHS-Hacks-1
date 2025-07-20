@@ -141,7 +141,7 @@ export default function HomePage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Breaking Barriers Together</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
               Our platform connects underrepresented women with opportunities, resources, and support 
-              to build successful careers in today's digital economy.
+              to build successful careers in today&apos;s digital economy.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
