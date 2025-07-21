@@ -91,7 +91,7 @@ const Navbar2 = () => {
                 <Heart className="h-6 w-6 text-white" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                WomenRise
+                WomenRise PathWays
               </span>
             </Link>
           </motion.div>
