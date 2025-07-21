@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "WomenRise",
+  title: "WomenRise PathWays",
   description: "Empowering underrepresented women through awareness, access, and opportunity.",
 };
 
