@@ -1,6 +1,6 @@
-# 🌟 Women Rise
+# 🌟 Women Rise PathWays
 
-**Women Rise** is a platform dedicated to empowering underrepresented women by increasing **awareness**, **accessibility**, and **opportunity** — inspired by **UN Sustainable Development Goal 5: Gender Equality**.
+**Women Rise PathWays** is a platform dedicated to empowering underrepresented women by increasing **awareness**, **accessibility**, and **opportunity** — inspired by **UN Sustainable Development Goal 5: Gender Equality**.
 
 This site curates high-quality resources to help women learn new skills in programming, IT, music, and art, and includes real-time job and internship listings powered by the Adzuna API.
 
